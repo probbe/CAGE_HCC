@@ -18,7 +18,7 @@
 #*-*-*-
 INPUT=${1}
 OUTDIR=${2}
-SCRIPT=/home/pauline/scripts/bamToCTSS_v0.6.pl
+SCRIPT=/home/pauline/scripts/CAGE_processing/bamToCTSS_v0.6.pl
 TEMP=/home/pauline/scripts/tmp
 #------
 
@@ -35,9 +35,7 @@ do
 
   printf "#!/bin/sh\nperl ${SCRIPT} --bamPath=${line} --minLen=0 --maxLen=100 --min_MAPQ=10 --longShortFormat=short --exclude_flag=512,256,1024,2048 --outputPrefix=$DATAID --outDir=${OUTDIR}\ngunzip -k ${OUTDIR}/${DATAID}/bed/${DATAID}.short.ctss.bed.gz" > ${TEMP}/${DATAID}.BamToCTSS.sh
 
-	#qsub -o ${TEMP}/${DATAID}.BamToCTSS.sh.o \
-  #-e ${TEMP}/${DATAID}.BamToCTSS.sh.e \
-  #${TEMP}/${DATAID}.BamToCTSS.sh
+	qsub -o ${TEMP}/${DATAID}.BamToCTSS.sh.o -e ${TEMP}/${DATAID}.BamToCTSS.sh.e ${TEMP}/${DATAID}.BamToCTSS.sh
 
 
 #logs
