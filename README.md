@@ -1,18 +1,24 @@
 # CAGE_HCC
 Analysis of CAGE data for liver cancer samples
 
+How to process the CAGE data from BAM to output analysis
 
-processing of CAGE data
+# STEP 1: BAM TO CTSS
+It generated one CTSS file for one BAM file (one sample). The script is BamtoCTSS.pl. 
+Original path: /home/hon-chun/resources/perlScript/FANTOM/bamToCTSS/v0.6/bamToCTSS_v0.6.pl
 
-STEP 1: BAM TO CTSS
-BAM -> CTSS (BamtoCTSS.pl script from Chung). It generated one CTSS file for one BAM file (one sample). Chung's BAM -> CTSS script: /home/hon-chun/resources/perlScript/FANTOM/bamToCTSS/v0.6/bamToCTSS_v0.6.pl
-  /home/pauline/scripts/CAGE_processing/BamToCTSS.sh
-  usage: bash /home/pauline/scripts/CAGE_processing/BamToCTSS.sh input.list output_path
-  input.list: list of paths pointing to BAM files
-  output_path: path to output directory where to save the CTSS files
+Wrapper bash script to submit bamToCTSS_v0.6.pl as a job on the cluster for one or several samples:
+
+BamToCTSS.sh
+  usage: 
+		./BamToCTSS.sh input.list output_path
+  arguments: 
+		input.list: list of paths pointing to BAM files
+  	output_path: path to output directory where to save the CTSS files
 
 
-STEP 2: mergeCTSSfile
+#work in progress...
+#STEP 2: mergeCTSSfile
 
 We gotta pool the CTSS before calling paraclu clusters.
         For that purpose I use this script:
